@@ -1251,6 +1251,8 @@ void init_server_agent(void)
     /* 初始化系统信息，做CPU/MEM分析上报 */
     init_sysinfo();
 
+    // 服务的配置信息保存在一处，其它地方只需要通过get_xxx来获取就好了
+
     /* 创建心跳临时节点 */
     create_heartbeat_node(get_local_ip());
 
@@ -1273,6 +1275,9 @@ int32_t init(void)
         NLOG_ERROR("Network init faild, ret [%d]", ret);
         return -1;
     }
+
+    // 当agent运行在服务提供方的机器上时，agent负责上报服务端的负载
+    // 当agent运行在客户机上时，agent负责回答API的查询请求
 
     /* 初始化服务提供方 */
     if (mode == SERVER_MODE || mode == MIX_MODE) {

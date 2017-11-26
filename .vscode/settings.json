@@ -3,6 +3,7 @@
         "typeinfo": "c",
         "ios": "cpp",
         "fstream": "c",
-        "locale": "c"
+        "locale": "c",
+        "zkloadreport.h": "c"
     }
 }

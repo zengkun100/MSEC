@@ -185,6 +185,7 @@ int32_t get_naming_server_path(const char *name, uint32_t index, char *path, int
         return -3;
     }
 
+    // 业务的名字是Login.ptlogin这样的2级结构，这里相当于是在Login和ptlogin之间做了目录层级划分
     *pos = '/';
 
     return 0;

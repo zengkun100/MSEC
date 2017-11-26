@@ -25,6 +25,8 @@
 
 typedef unsigned long long   llu64_t;
 
+// 需要采集CPU、内存的快照数据时，可以参考这里的实现方式
+
 /* CPU 实时快照结构定义 */
 typedef struct _tag_cpu_stat
 {
@@ -88,6 +90,7 @@ static void extract_cpu_stat(cpu_stat_t *stat)
 {
     char name[64];
     char line[512];
+    // Linux系统的CPU信息是从文件中获取的
     FILE* fp = fopen("/proc/stat", "r");
     if (!fp) {
         NLOG_ERROR("open /proc/stat failed, [%m]");
@@ -181,6 +184,7 @@ static void calc_mem_free(struct sysinfo *info)
 
     extract_mem_info(&stat);
     info->mem_total = stat.mem_total;
+    // Linux空闲内存的计算方法：
     info->mem_free  = stat.mem_free + stat.buffers + stat.cached - stat.mapped;
 }
 
@@ -209,6 +213,7 @@ static void update_sysinfo(void)
 
     memcpy(last_stat, cur_stat, sizeof(cpu_stat_t));
     extract_cpu_stat(cur_stat);
+    // 用2次的数据取了差值
     sys_stat.cpu_idle   = cur_stat->idle - last_stat->idle;
     sys_stat.cpu_total  = cur_stat->total - last_stat->total;
 
