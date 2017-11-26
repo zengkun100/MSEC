@@ -27,6 +27,8 @@
  * @modify from linux-2.6.32/lib/random32.c
  */
 
+// 随机数的算法有这么重要吗？还要从Linux的内核代码里面去摘
+
 struct rnd_state {
     unsigned int s1, s2, s3;
 };

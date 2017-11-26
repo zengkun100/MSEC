@@ -55,6 +55,7 @@ void slist_add(struct slist_head *head, struct slist_head *node)
     do {
         next = head->next;
         node->next = next;
+        // 这是一个线程安全的添加过程，如果失败了，重试就好
         if (compare_and_swap_l((long *)&head->next, (long)next, (long)node)) {
             break;
         }

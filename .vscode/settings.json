@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "typeinfo": "c",
+        "ios": "cpp",
+        "fstream": "c",
+        "locale": "c"
+    }
+}

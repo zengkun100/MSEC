@@ -339,6 +339,7 @@ int32_t get_route_from_agent(const char *name, struct routeid *route)
         return NLB_ERR_CREATE_SOCKET_FAIL;
     }
 
+    // 从这里可以看出来：agent和发起api查询的客户端，是在同一台机器上的
     /* 组包并发送路由请求 */
     make_inet_addr("127.0.0.1", (uint16_t)NLB_AGENT_LISTEN_PORT, &server_addr);
     len = serialize_route_request(name, buff, sizeof(buff));

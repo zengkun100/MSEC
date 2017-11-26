@@ -211,6 +211,7 @@ void parse_args(int32_t argc, char **argv)
     }
 
     /* 保存参数数据 */
+    // 命令行参数的解析结果保存到全局变量里，可以全局使用
     g_agent_config.mode     = mode;
     g_agent_config.timeout  = timeout;
     g_agent_config.port     = NLB_AGENT_LISTEN_PORT;

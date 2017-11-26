@@ -58,6 +58,7 @@ bool prime(uint32_t n)
         return false;
     }
 
+    // 经典的质数求解算法
     for (i = 3; i * i <= n; i += 2) {
         if (n % i == 0) {
             return false;

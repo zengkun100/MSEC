@@ -65,6 +65,7 @@ static bool singleton_check(void)
     }
 
     /* 不关闭文件描述符 */
+    // 第一个进程独占了文件描述符，后面的进程再想创建就会报错
 
     return true;
 }
